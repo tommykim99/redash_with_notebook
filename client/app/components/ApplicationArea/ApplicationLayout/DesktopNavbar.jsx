@@ -57,6 +57,7 @@ function useNavbarActiveState() {
       ),
       dataSources: includes(["DataSources.List"], currentRoute.id),
       alerts: includes(["Alerts.List", "Alerts.New", "Alerts.View", "Alerts.Edit"], currentRoute.id),
+      notebooks : includes(["Notebooks.List", "Notebooks.New", "Notebooks.View", "Notebooks.Edit"], currentRoute.id),
     }),
     [currentRoute.id]
   );
@@ -103,6 +104,14 @@ export default function DesktopNavbar() {
             <Link href="alerts">
               <AlertOutlinedIcon aria-label="Alerts navigation button" />
               <span className="desktop-navbar-label">Alerts</span>
+            </Link>
+          </Menu.Item>
+        )}
+        {currentUser.hasPermission("list_dashboards") && (
+          <Menu.Item key="notebooks" className={activeState.notebooks ? "navbar-active-item" : null}>
+            <Link href="notebooks">
+              <CodeOutlinedIcon aria-label="Notebook navigation button" />
+              <span className="desktop-navbar-label">Notebook</span>
             </Link>
           </Menu.Item>
         )}
